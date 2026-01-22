@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{% static "css/biblioteka.css" %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="header" >
+            Pierwsza aplikacja Django
+            {% if request.session.token %}
+                <a href="{% url 'drf-token-logout' %}">Wyloguj</a>
+            {% else %}
+                <a href="{% url 'drf-token-login' %}">Zaloguj</a>
+            {% endif %}
+        </div>
+        <hr/>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div id="sidebar">
+            <p>Panel boczny</p>
+        </div>
+    </body>
+</html>
